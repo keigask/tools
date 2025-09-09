@@ -8,8 +8,8 @@ using namespace std;
 class Config {
     public:
         int seed;
-        double max;
-        double min;
+        int max;
+        int min;
         int count;
 };
 
@@ -17,7 +17,7 @@ class Config {
 void usage() {
     fprintf(stderr, 
             "usage: randfloats [--seed|-s] [--max|-x] [--min|-n] [--count|-c]\n");
-    fprintf(stderr, "       Prints random floats.\n");
+    fprintf(stderr, "       Prints random integers.\n");
 }
 
 /* string -> int */
@@ -26,18 +26,6 @@ int string_to_int(const string &s) {
 
     if (sscanf(s.c_str(), "%d", &rv) != 1) {
         fprintf(stderr, "Bad integer: %s\n", s.c_str());
-        exit(1);
-    }
-
-    return rv;
-}
-
-/* string -> double */
-double string_to_double(const string &s) {
-    double rv;
-
-    if (sscanf(s.c_str(), "%lf", &rv) != 1) {
-        fprintf(stderr, "Bad float: %s\n", s.c_str());
         exit(1);
     }
 
@@ -66,12 +54,12 @@ void parse_argv(int argc, char **argv, Config &cfg) {
         }
         else if (strcmp(argv[i], "--max") == 0 ||
                strcmp(argv[i], "-x") == 0) {
-            cfg.max = string_to_double(argv[i + 1]);
+            cfg.max = string_to_int(argv[i + 1]);
             i++;
         }
         else if (strcmp(argv[i], "--min") == 0 ||
                strcmp(argv[i], "-n") == 0) {
-            cfg.min = string_to_double(argv[i + 1]);
+            cfg.min = string_to_int(argv[i + 1]);
             i++;
         }
         else if (strcmp(argv[i], "--count") == 0 ||
@@ -84,9 +72,9 @@ void parse_argv(int argc, char **argv, Config &cfg) {
             exit(1);
         }
     }
-    
+
     if (cfg.min > cfg.max) {
-        fprintf(stderr, "Minimum value (%lg) should be smaller than the maximum value (%lg)\n", cfg.min, cfg.max);
+        fprintf(stderr, "Minimum value (%d) should be smaller than the maximum value (%d)\n", cfg.min, cfg.max);
         exit(1);
     }
     if (cfg.count < 0) {
@@ -97,12 +85,12 @@ void parse_argv(int argc, char **argv, Config &cfg) {
 
 int main(int argc, char **argv) {
     Config cfg;
-    double r;
+    int r;
     int i;
 
     cfg.seed = time(NULL);
-    cfg.max = 1.0;
-    cfg.min = 0.0;
+    cfg.max = 0x7fffffff;
+    cfg.min = 0x0;
     cfg.count = 1;
 
     parse_argv(argc, argv, cfg);
@@ -110,9 +98,9 @@ int main(int argc, char **argv) {
     srand48(cfg.seed);
 
     for (i = 0; i < cfg.count; i++) {
-        r = drand48();
-        r *= (cfg.max - cfg.min);
+        r = lrand48();
+        r %= (cfg.max - cfg.min + 1);
         r += cfg.min;
-        printf("%lf\n", r);
+        printf("%d\n", r);
     }
 }
