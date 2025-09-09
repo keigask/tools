@@ -43,27 +43,43 @@ void parse_argv(int argc, char **argv, Config &cfg) {
             exit(0);
         }
 
-        if (i + 1 >= argc) {
-            fprintf(stderr, "Flag needs a value: %s\n", argv[i]);
-        }
-
         if (strcmp(argv[i], "--seed") == 0 || 
                 strcmp(argv[i], "-s") == 0) {
+            if (i + 1 >= argc) {
+                fprintf(stderr, "Flag needs a value: %s\n", argv[i]);
+                exit(1);
+            }
+
             cfg.seed = string_to_int(argv[i + 1]);
             i++;
         }
         else if (strcmp(argv[i], "--max") == 0 ||
-               strcmp(argv[i], "-x") == 0) {
+                    strcmp(argv[i], "-x") == 0) {
+            if (i + 1 >= argc) {
+                fprintf(stderr, "Flag needs a value: %s\n", argv[i]);
+                exit(1);
+            }
+
             cfg.max = string_to_int(argv[i + 1]);
             i++;
         }
         else if (strcmp(argv[i], "--min") == 0 ||
-               strcmp(argv[i], "-n") == 0) {
+                    strcmp(argv[i], "-n") == 0) {
+            if (i + 1 >= argc) {
+                fprintf(stderr, "Flag needs a value: %s\n", argv[i]);
+                exit(1);
+            }
+
             cfg.min = string_to_int(argv[i + 1]);
             i++;
         }
         else if (strcmp(argv[i], "--count") == 0 ||
-                 strcmp(argv[i], "-c") == 0) {
+                      strcmp(argv[i], "-c") == 0) {
+            if (i + 1 >= argc) {
+                fprintf(stderr, "Flag needs a value: %s\n", argv[i]);
+                exit(1);
+            }
+
             cfg.count = string_to_int(argv[i + 1]);
             i++;
         }
