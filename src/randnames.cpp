@@ -111,7 +111,7 @@ int main(int argc, char **argv) {
     for (i = 1; i < argc; i++) {
         flag = argv[i];
 
-        if (flag == "--help" || flag == "-?") {
+        if (flag == "--help" || flag == "-h") {
             usage();
             exit(1);
         }

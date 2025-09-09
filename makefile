@@ -2,7 +2,7 @@ FLAGS = -Wall -Wextra -Iinclude
 
 # Make commands.
 
-all: bin/based bin/charm
+all: bin/based bin/charm bin/randfloats
 
 clean:
 	rm -f bin/* ; touch bin/.keep
@@ -20,6 +20,9 @@ bin/charm: src/charm.cpp
 
 bin/randnames: src/randnames.cpp
 	g++ $(FLAGS) -o bin/randnames src/randnames.cpp
+
+bin/randfloats: src/randfloats.cpp
+	g++ $(FLAGS) -o bin/randfloats src/randfloats.cpp
 
 # Shell scripts
 # (none...)

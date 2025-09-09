@@ -159,7 +159,7 @@ int main(int argc, char **argv) {
         usage(false);
         exit(1);
     }
-    else if (strcmp(argv[1], "--help") == 0 || strcmp(argv[1], "-?") == 0) {
+    else if (strcmp(argv[1], "--help") == 0 || strcmp(argv[1], "-h") == 0) {
         usage(true);
         exit(1);
     }
