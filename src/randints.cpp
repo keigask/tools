@@ -16,7 +16,7 @@ class Config {
 /* Usage message. */
 void usage() {
     fprintf(stderr, 
-            "usage: randfloats [--seed|-s] [--max|-x] [--min|-n] [--count|-c]\n");
+            "usage: randints [--seed|-s] [--max|-x] [--min|-n] [--count|-c]\n");
     fprintf(stderr, "       Prints random integers.\n");
 }
 
