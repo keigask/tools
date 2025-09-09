@@ -92,7 +92,7 @@ void usage() {
     fprintf(stderr, "  --count #  -n # -- number of names to output (default: 1)\n");
     fprintf(stderr, "  --seed #   -s # -- seed for rng (default: system time)\n");
     fprintf(stderr, "  --gender # -g # -- gender for names m|f|x (default: x [any])\n");
-    fprintf(stderr, "  --help     -?   -- print this message and exit\n");
+    fprintf(stderr, "  --help     -h   -- print this message and exit\n");
 }
 
 int main(int argc, char **argv) {
@@ -116,6 +116,9 @@ int main(int argc, char **argv) {
             exit(1);
         }
 
+        /* TODO: This runs on invalid flags. Honestly, I should just rewrite 
+         * all of these to handle command line args the way randfloats does... 
+         * */
         if ((i + 1) >= argc) {
             fprintf(stderr, "Error: flag %s requires a value\n", flag.c_str());
             exit(1);

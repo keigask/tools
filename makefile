@@ -2,13 +2,15 @@ FLAGS = -Wall -Wextra -Iinclude
 
 # Make commands.
 
-all: bin/based bin/charm bin/randfloats bin/randints
+all: bin/based bin/charm bin/randfloats bin/randints bin/randomize
 
 clean:
 	rm -f bin/* ; touch bin/.keep
 
 # I keep this one out of 'make all' because some compilers don't like it...
 randnames: bin/randnames
+
+e: all randnames
 
 # C++ programs.
 
@@ -26,6 +28,9 @@ bin/randfloats: src/randfloats.cpp
 
 bin/randints: src/randints.cpp
 	g++ $(FLAGS) -o bin/randints src/randints.cpp
+
+bin/randomize: src/randomize.cpp
+	g++ $(FLAGS) -o bin/randomize src/randomize.cpp
 
 # Shell scripts
 # (none...)
