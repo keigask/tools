@@ -15,7 +15,7 @@ class Config {
 
 /* Read flags and adjust config. */
 bool parse_flags(const string &flag, Config &cfg) {
-    if (flag == "--hex" || flag == "-h") {
+    if (flag == "--hex" || flag == "-x") {
         cfg.base_mode = 'H';
         return true;
     }
@@ -127,7 +127,7 @@ void usage(bool help_flag) {
     else {
         fprintf(stderr, "Flags:\n");
         fprintf(stderr, "  base modes:\n"); 
-        fprintf(stderr, "  --hex -h           -- input / output numbers should be base 16\n");
+        fprintf(stderr, "  --hex -x           -- input / output numbers should be base 16\n");
         fprintf(stderr, "  --dec -d           -- input / output numbers should be base 10\n");
         fprintf(stderr, "\n"); 
         fprintf(stderr, "  output modes:\n"); 
